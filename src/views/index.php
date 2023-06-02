@@ -1,3 +1,6 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/Modules/Core/ini.php'; ?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,9 +11,10 @@
     <title>Home</title>
 </head>
 <body>
-
-
 <div>
+    <?php
+    
+    ?>
 
 </div>
 
