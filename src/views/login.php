@@ -11,12 +11,12 @@
     <h2 class="heading-login-box">Login</h2>
     <form method="POST">
         <div class="user-box">
-            <input class="user-box-input" type="email" name="email" required>
-            <label class="user-box-label">Username</label>
+            <input id='email' type="email" name="email" required class="user-box-input">
+            <label for='email' class="user-box-label">Username</label>
         </div>
         <div class="user-box">
-            <input class="user-box-input" type="password" name="password" required>
-            <label class="user-box-label">Password</label>
+            <input id='password' type="password" name="password" required class="user-box-input">
+            <label for='password' class="user-box-label">Password</label>
         </div>
         <button type="submit" class="login-box-button">
             Login
