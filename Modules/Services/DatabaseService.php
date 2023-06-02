@@ -51,6 +51,21 @@ class DatabaseService
         return $this;
     }
 
+    public function action($action, $table, $where = [])
+    {
+        //TODO
+    }
+
+    public function get()
+    {
+        //TODO
+    }
+
+    public function delete()
+    {
+        //TODO
+    }
+
     public function error(): bool
     {
         return $this->_error;
