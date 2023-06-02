@@ -1,4 +1,10 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/Modules/Core/ini.php'; ?>
+<?php
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Modules/Core/ini.php';
+
+$user = DatabaseService::getInstance()->query('SELECT username FROM users WHERE username = ?', ['bakari']);
+
+?>
 
 
 <!doctype html>
@@ -12,9 +18,15 @@
 </head>
 <body>
 <div>
-    <?php
-    
-    ?>
+
+<pre>
+        <?php
+        if ($user->error())
+            var_dump('error');
+        else
+            var_dump($user);
+        ?>
+</pre>
 
 </div>
 
