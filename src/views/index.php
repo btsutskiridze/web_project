@@ -2,7 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Modules/Core/ini.php';
 
-$user = DatabaseService::getInstance()->query('SELECT username FROM users WHERE username = ?', ['bakari']);
+$users = DatabaseService::getInstance()->get('users')->results();
 
 ?>
 
@@ -19,14 +19,17 @@ $user = DatabaseService::getInstance()->query('SELECT username FROM users WHERE 
 <body>
 <div>
 
-<pre>
-        <?php
-        if ($user->error())
-            var_dump('error');
-        else
-            var_dump($user);
-        ?>
-</pre>
+    <?php
+    if (!$users) {
+        var_dump('error');
+    } else {
+        echo '<pre>';
+        var_dump($users);
+        echo '</pre>';
+
+    }
+
+    ?>
 
 </div>
 

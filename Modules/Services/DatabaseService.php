@@ -7,7 +7,7 @@ class DatabaseService
     private PDO $_pdo; //PHP Data Object
     private $_query;
     private bool $_error = false;
-    private array|bool $_results;
+    private array $_results;
     private int $_count = 0;
 
     private function __construct()
@@ -37,10 +37,12 @@ class DatabaseService
     {
         $this->_error = false;
         $this->_query = $this->_pdo->prepare($sql);
+
         if ($this->_query) {
             foreach ($params as $i => $param) {
                 $this->_query->bindValue($i + 1, $param);
             }
+
             if ($this->_query->execute()) {
                 $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
                 $this->_count = $this->_query->rowCount();
@@ -51,23 +53,54 @@ class DatabaseService
         return $this;
     }
 
-    public function action($action, $table, $where = [])
+    public function action($action, $table, array $where = []): DatabaseService|bool
     {
-        //TODO
+        $validOperators = ['=', '>', '<', '>=', '<='];
+
+        if (count($where) === 3 && in_array($where[1], $validOperators)) {
+            [$field, $operator, $value] = $where;
+
+            $sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
+
+            if (!$this->query($sql, [$value])->error()) return $this;
+        }
+
+        if (count($where) === 0) {
+            $sql = "{$action} FROM {$table}";
+
+            if (!$this->query($sql)->error()) return $this;
+        }
+
+        return false;
     }
 
-    public function get()
+    public function get($table, array $where = []): DatabaseService|bool
     {
-        //TODO
+        return $this->action('SELECT *', $table, $where);
     }
 
-    public function delete()
+    public function delete($table, $where): DatabaseService|bool
     {
-        //TODO
+        return $this->action('DELETE', $table, $where);
+    }
+
+    public function results(): array
+    {
+        return $this->_results;
+    }
+
+    public function first(): object|null
+    {
+        return $this->count() ? $this->results()[0] : null;
     }
 
     public function error(): bool
     {
         return $this->_error;
+    }
+
+    public function count(): int
+    {
+        return $this->_count;
     }
 }
