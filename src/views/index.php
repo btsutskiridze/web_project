@@ -1,13 +1,11 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Module/Core/ini.php';
+require_once '../../Module/Core/ini.php';
 
-$users = DB::getInstance()->insert('users', [
-    'username' => 'test',
-    'password' => 'test',
-    'salt' => 'test',
-    'name' => 'test',
-]);
+//$users = DB::getInstance()->update('users', 2, [
+//    'username' => 'updated',
+//    'password' => 'updated'
+//]);
 
 ?>
 
@@ -24,17 +22,17 @@ $users = DB::getInstance()->insert('users', [
 <body>
 <div>
 
-    <?php
-    if (!$users) {
-        var_dump('error');
-    } else {
-        echo '<pre>';
-        var_dump($users);
-        echo '</pre>';
-
-    }
-
-    ?>
+    <!--    --><?php
+    //    if (!$users) {
+    //        var_dump('error');
+    //    } else {
+    //        echo '<pre>';
+    //        var_dump($users);
+    //        echo '</pre>';
+    //
+    //    }
+    //
+    //    ?>
 
 </div>
 
