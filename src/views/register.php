@@ -31,14 +31,13 @@ if (Input::exists()) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>Register</title>
     <link href="../css/AuthPages.css" rel="stylesheet">
 </head>
 <body class="login-page">
 <div class="login-box">
     <h2 class="heading-login-box">Registration</h2>
     <form method="POST" action="" autocomplete="off">
-        <!--        value="--><?php //= Input::get('username') ?><!--"-->
         <div class="user-box">
             <input id='username' type="text" name="username" value="<?= Input::get('username') ?>"
                    class="user-box-input">
@@ -70,7 +69,7 @@ if (Input::exists()) {
             <?php endif; ?>
         </div>
         <button type="submit" name='register' class="login-box-button">
-            Login
+            Register
         </button>
     </form>
     <a href="login.php" class="base-link">Already have an account? Login</a>
