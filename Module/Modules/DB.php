@@ -103,6 +103,19 @@ class DB //database
         return $this->executeQuery($sql, $fields);
     }
 
+    public function update(string $table, int $id, array $fields)
+    {
+        if (empty($fields)) return false;
+
+        $sets = implode(', ', array_map(function ($key) {
+            return "{$key} = ?";
+        }, array_keys($fields)));
+
+        $sql = "UPDATE {$table} SET {$sets} WHERE id = {$id}";
+
+        return $this->executeQuery($sql, $fields);
+    }
+
     public function results(): array
     {
         return $this->_results;
