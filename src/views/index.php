@@ -2,7 +2,12 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Module/Core/ini.php';
 
-$users = DB::getInstance()->get('users')->results();
+$users = DB::getInstance()->insert('users', [
+    'username' => 'test',
+    'password' => 'test',
+    'salt' => 'test',
+    'name' => 'test',
+]);
 
 ?>
 

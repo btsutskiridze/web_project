@@ -24,7 +24,7 @@ class DB //database
 
     }
 
-    public static function getInstance(): ?DB
+    public static function getInstance(): DB
     {
         if (!isset(self::$_instance)) {
             self::$_instance = new DB();
@@ -39,8 +39,9 @@ class DB //database
         $this->_query = $this->_pdo->prepare($sql);
 
         if ($this->_query) {
-            foreach ($params as $i => $param) {
-                $this->_query->bindValue($i + 1, $param);
+            $x = 1;
+            foreach ($params as $param) {
+                $this->_query->bindValue($x++, $param);
             }
 
             if ($this->_query->execute()) {
@@ -53,6 +54,12 @@ class DB //database
         return $this;
     }
 
+    private function executeQuery(string $sql, array $params = []): DB|bool
+    {
+        $query = $this->query($sql, $params);
+        return !$query->error() ? $this : false;
+    }
+
     public function action($action, $table, array $where = []): DB|bool
     {
         $validOperators = ['=', '>', '<', '>=', '<='];
@@ -62,13 +69,13 @@ class DB //database
 
             $sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
 
-            if (!$this->query($sql, [$value])->error()) return $this;
+            return $this->executeQuery($sql, [$value]);
         }
 
-        if (count($where) === 0) {
+        if (empty($where)) {
             $sql = "{$action} FROM {$table}";
 
-            if (!$this->query($sql)->error()) return $this;
+            return $this->executeQuery($sql);
         }
 
         return false;
@@ -79,9 +86,21 @@ class DB //database
         return $this->action('SELECT *', $table, $where);
     }
 
-    public function delete($table, $where): DB|bool
+    public function delete(string $table, array $where): DB|bool
     {
         return $this->action('DELETE', $table, $where);
+    }
+
+    public function insert(string $table, array $fields): DB|bool
+    {
+        if (empty($fields)) return false;
+
+        $columns = implode("`,`", array_keys($fields));
+        $placeholders = implode(', ', array_fill(0, count($fields), '?'));
+
+        $sql = "INSERT INTO  {$table} (`{$columns}`) VALUES({$placeholders})";
+
+        return $this->executeQuery($sql, $fields);
     }
 
     public function results(): array
