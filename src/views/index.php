@@ -1,8 +1,8 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Modules/Core/ini.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Module/Core/ini.php';
 
-$users = DatabaseService::getInstance()->get('users')->results();
+$users = DB::getInstance()->get('users')->results();
 
 ?>
 

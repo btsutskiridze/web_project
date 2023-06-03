@@ -1,9 +1,9 @@
 <?php
 
-class DatabaseService
+class DB //database
 {
 
-    private static ?DatabaseService $_instance = null;
+    private static ?DB $_instance = null;
     private PDO $_pdo; //PHP Data Object
     private $_query;
     private bool $_error = false;
@@ -24,16 +24,16 @@ class DatabaseService
 
     }
 
-    public static function getInstance(): ?DatabaseService
+    public static function getInstance(): ?DB
     {
         if (!isset(self::$_instance)) {
-            self::$_instance = new DatabaseService();
+            self::$_instance = new DB();
         }
         return self::$_instance;
     }
 
 
-    public function query($sql, $params = []): DatabaseService
+    public function query($sql, $params = []): DB
     {
         $this->_error = false;
         $this->_query = $this->_pdo->prepare($sql);
@@ -53,7 +53,7 @@ class DatabaseService
         return $this;
     }
 
-    public function action($action, $table, array $where = []): DatabaseService|bool
+    public function action($action, $table, array $where = []): DB|bool
     {
         $validOperators = ['=', '>', '<', '>=', '<='];
 
@@ -74,12 +74,12 @@ class DatabaseService
         return false;
     }
 
-    public function get($table, array $where = []): DatabaseService|bool
+    public function get($table, array $where = []): DB|bool
     {
         return $this->action('SELECT *', $table, $where);
     }
 
-    public function delete($table, $where): DatabaseService|bool
+    public function delete($table, $where): DB|bool
     {
         return $this->action('DELETE', $table, $where);
     }

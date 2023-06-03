@@ -1,4 +1,4 @@
-<?php require_once '../../Modules/Core/ini.php'; ?>
+<?php require_once '../../Module/Core/ini.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
