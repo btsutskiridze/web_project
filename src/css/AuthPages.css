@@ -30,7 +30,7 @@
     padding: 10px 0;
     font-size: 14px;
     color: #fff;
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
     border: none;
     border-bottom: 1px solid #fff;
     outline: none;
@@ -46,6 +46,15 @@
     color: #fff;
     pointer-events: none;
     transition: 0.5s;
+}
+
+.error-message {
+    width: 100%;
+    left: 0;
+    bottom: 1.6rem;
+    position: absolute;
+    color: #ff4747;
+    font-size: 0.8rem;
 }
 
 .login-box .user-box input:focus ~ label,
