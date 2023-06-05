@@ -23,12 +23,16 @@ $GLOBALS['config'] = [
 
 define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT']);
 
-$subdirs = ['Modules', 'Configs', 'Models', 'Helpers'];
+$subdirs = ['Modules', 'Configs', 'Models', 'Helpers', 'Controllers'];
 
 foreach ($subdirs as $subdir) {
     spl_autoload_register(function ($class) use ($subdir) {
         $file = ROOT_PATH . '/Module/' . $subdir . '/' . $class . '.php';
         if (file_exists($file)) require_once $file;
     });
+
 }
+
+
+
 
