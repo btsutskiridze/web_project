@@ -1,6 +1,8 @@
 <?php
 
 
+Route::get('/', fn() => Controller::view('index'));
+
 Route::get('/login', fn() => AuthController::view('login'));
 Route::get('/register', fn() => AuthController::view('register'));
 
