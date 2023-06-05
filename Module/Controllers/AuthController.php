@@ -32,13 +32,12 @@ class AuthController extends Controller
                 'password' => Hash::make(Input::get('password')),
                 'group' => 1,
             ]);
-            Session::flash('success', 'You registered successfully!');
-            header('location:/');
-//            Redirect::to('/');
+            Session::put('success', 'You registered successfully!');
+            Redirect::to('/register');
         }
 
 
-        $this->view('register', ['errors' => $validation->errors()]);
+        $this->view('/register', ['errors' => $validation->errors()]);
     }
 
     public function login(): void
