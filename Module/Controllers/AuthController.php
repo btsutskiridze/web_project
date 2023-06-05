@@ -2,6 +2,9 @@
 
 class AuthController extends Controller
 {
+    /**
+     * @throws Exception
+     */
     public function register(): void
     {
 
@@ -23,9 +26,17 @@ class AuthController extends Controller
 
 
         if ($validation->passed()) {
+            $user = (new User)->create([
+                'username' => Input::get('username'),
+                'email' => Input::get('email'),
+                'password' => Hash::make(Input::get('password')),
+                'group' => 1,
+            ]);
             Session::flash('success', 'You registered successfully!');
             header('location:/');
+//            Redirect::to('/');
         }
+
 
         $this->view('register', ['errors' => $validation->errors()]);
     }
