@@ -46,6 +46,11 @@ class Validator
                             if (!filter_var($value, FILTER_VALIDATE_EMAIL))
                                 $this->addError($inputName, "{$this->getAttr($inputName)} is not a valid email");
                             break;
+                        case 'exists':
+                            $query = $this->_db->get($ruleValue, [$inputName, '=', $value]);
+                            if (!$query->count())
+                                $this->addError($inputName, "{$this->getAttr($inputName)} doesn't exist");
+                            break;
                         default:
                             break;
                     }
@@ -84,7 +89,7 @@ class Validator
         return $this->_attributes[$name] ?? $name;
     }
 
-    
+
     public function passed(): bool
     {
         return $this->_passed;
