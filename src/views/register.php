@@ -42,6 +42,8 @@
                 <span class="error-message"><?= $errors['confirm_password'] ?></span>
             <?php endif; ?>
         </div>
+
+        <input type="hidden" name="token" value="<?= Token::generate() ?>">
         <button type="submit" name='register' class="login-box-button">
             Register
         </button>
