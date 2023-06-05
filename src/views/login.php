@@ -1,4 +1,3 @@
-<?php require_once '../../Module/Core/ini.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
-    <link href="../css/AuthPages.css" rel="stylesheet">
+    <link href="src/css/AuthPages.css" rel="stylesheet">
 </head>
 <body class="login-page">
 <div class="login-box">
@@ -25,7 +24,7 @@
             Login
         </button>
     </form>
-    <a href="register.php" class="base-link">Don't have an account? Register</a>
+    <a href="register" class="base-link">Don't have an account? Register</a>
 </div>
 </body>
 </html>

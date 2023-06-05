@@ -1,29 +1,3 @@
-<?php
-
-require_once '../../Module/Core/ini.php';
-
-$errors = [];
-
-if (Input::exists()) {
-    $validator = new Validator();
-
-    $validator->setAttributes([
-        'username' => 'Username',
-        'email' => 'Email',
-        'password' => 'Password',
-        'confirm_password' => 'Password Confirmation'
-    ]);
-
-    $validation = $validator->check($_POST, [
-        'username' => ['required' => true, 'min' => 2, 'max' => 20, 'unique' => 'users'],
-        'email' => ['required' => true, 'min' => 2, 'max' => 60, 'unique' => 'users', 'email' => true],
-        'password' => ['required' => true, 'min' => 6,],
-        'confirm_password' => ['required' => true, 'matches' => 'password']
-    ]);
-
-    $validation->passed() ? header('Location: login.php') : $errors = $validation->errors();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,12 +6,12 @@ if (Input::exists()) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
-    <link href="../css/AuthPages.css" rel="stylesheet">
+    <link href="src/css/AuthPages.css" rel="stylesheet">
 </head>
 <body class="login-page">
 <div class="login-box">
     <h2 class="heading-login-box">Registration</h2>
-    <form method="POST" action="" autocomplete="off">
+    <form method="POST" action="/register" autocomplete="off">
         <div class="user-box">
             <input id='username' type="text" name="username" value="<?= Input::get('username') ?>"
                    class="user-box-input">
@@ -72,7 +46,7 @@ if (Input::exists()) {
             Register
         </button>
     </form>
-    <a href="login.php" class="base-link">Already have an account? Login</a>
+    <a href="login" class="base-link">Already have an account? Login</a>
 
 </div>
 </body>
