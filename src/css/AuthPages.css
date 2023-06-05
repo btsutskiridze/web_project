@@ -43,7 +43,7 @@ html, body {
     padding: 10px 0;
     font-size: 14px;
     color: #fff;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     border: none;
     border-bottom: 1px solid #fff;
     outline: none;
@@ -61,7 +61,7 @@ html, body {
 .error-message {
     width: 100%;
     left: 0;
-    bottom: 1.6rem;
+    bottom: 0.8rem;
     position: absolute;
     color: #ff5959;
     font-size: 0.8rem;

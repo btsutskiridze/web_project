@@ -18,6 +18,7 @@
             <a href="login" class="popup-button base-link">Login</a>
         </div>
     </div>
+    <script src="src/js/popup.js"></script>
 <?php endif; ?>
 
 <div class="auth-box">
@@ -61,7 +62,6 @@
     </form>
     <a href="login" class="base-link">Already have an account? Login</a>
 </div>
-<script src="src/js/popup.js"></script>
 </body>
 </html>
 
