@@ -8,17 +8,17 @@
     <title>Login</title>
     <link href="src/css/AuthPages.css" rel="stylesheet">
 </head>
-<body class="login-page">
-<div class="login-box">
-    <h2 class="heading-login-box">Login</h2>
+<body class="auth-page">
+<div class="auth-box">
+    <h2 class="heading-auth-box">Login</h2>
     <form method="POST" autocomplete="off">
         <div class="user-box">
-            <input id='email' type="email" name="email" required class="user-box-input">
             <label for='email' class="user-box-label">Email</label>
+            <input id='email' type="email" name="email" required class="user-box-input">
         </div>
         <div class="user-box">
-            <input id='password' type="password" name="password" required class="user-box-input">
             <label for='password' class="user-box-label">Password</label>
+            <input id='password' type="password" name="password" required class="user-box-input">
         </div>
         <button type="submit" class="login-box-button">
             Login
