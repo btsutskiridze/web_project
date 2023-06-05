@@ -26,12 +26,12 @@ class AuthController extends Controller
             $validation->passed() ? header('Location: login.php') : $errors = $validation->errors();
         }
 
-        $this->CreateView('register', ['errors' => $errors]);
+        $this->view('register', ['errors' => $errors]);
     }
 
     public function login(): void
     {
-        
+
     }
 
 }
