@@ -6,8 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
-    <link href="src/css/AuthPages.css" rel="stylesheet">
-    <link href="src/css/popup.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/authPages.css">
+    <link rel="stylesheet" href="src/css/popup.css">
 </head>
 <body class="auth-page">
 <?php if (Session::exists('message')): ?>
