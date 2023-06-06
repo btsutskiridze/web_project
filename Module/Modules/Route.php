@@ -24,6 +24,12 @@ class Route
         self::set($route, $handler, $middlewares);
     }
 
+    public static function notFound($handler): void
+    {
+        if (!in_array($_SERVER['REQUEST_URI'], self::$validRoutes))
+            $handler->__invoke();
+
+    }
 
     private static function set(string $route, $handler, $middlewares = []): void
     {
