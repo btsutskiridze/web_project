@@ -3,27 +3,29 @@
 class Route
 {
     public static array $validRoutes = [];
+    public static array $middlewares = [];
 
 
-    public static function get(string $route, $handler): void
+    public static function get(string $route, $handler, $middlewares = []): void
     {
         if (strcasecmp($_SERVER['REQUEST_METHOD'], 'GET') !== 0) {
             return;
         }
-        self::set($route, $handler);
+
+        self::set($route, $handler, $middlewares);
     }
 
-    public static function post(string $route, $handler): void
+    public static function post(string $route, $handler, $middlewares = []): void
     {
         if (strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') !== 0) {
             return;
         }
 
-        self::set($route, $handler);
+        self::set($route, $handler, $middlewares);
     }
 
 
-    private static function set(string $route, $handler): void
+    private static function set(string $route, $handler, $middlewares = []): void
     {
         self::$validRoutes[] = $route;
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -31,6 +33,8 @@ class Route
         if ($uri !== $route) {
             return;
         }
+
+        self::handleMiddlewares($middlewares);
 
         if (!is_callable($handler)) {
             self::handleControllerMethod($handler);
@@ -59,5 +63,21 @@ class Route
 
         $controller->$methodName();
 
+    }
+
+    public static function setMiddlewares($middleware): void
+    {
+        self::$middlewares[] = array_merge(self::$middlewares, $middleware);
+    }
+
+    public static function handleMiddlewares(array $middlewares): void
+    {
+        $middlewares = array_merge(self::$middlewares, $middlewares);
+
+        foreach ($middlewares as $middleware) {
+            if (is_callable($middleware)) {
+                $middleware();
+            }
+        }
     }
 }

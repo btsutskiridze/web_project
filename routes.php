@@ -1,10 +1,20 @@
 <?php
 
+include 'middlewares.php';
 
-Route::get('/', fn() => Controller::view('index'));
+Route::setMiddlewares([$guest, $auth]);
 
-Route::get('/login', fn() => AuthController::view('login'));
-Route::get('/register', fn() => AuthController::view('register'));
+Route::get('/', fn() => Redirect::to('/login'));
+Route::get('/login', 'AuthController@loginView', [$guest]);
+Route::get('/register', 'AuthController@registerView', [$guest]);
+Route::post('/login', 'AuthController@login', [$guest]);
+Route::post('/register', 'AuthController@register', [$guest]);
 
-Route::post('/login', 'AuthController@login');
-Route::post('/register', 'AuthController@register');
+
+Route::get('/profile', 'ProfileController@index', [$auth]);
+Route::get('/logout', 'AuthController@logout', [$auth]);
+
+
+Route::notFound(fn() => Redirect::to('/'));
+
+
