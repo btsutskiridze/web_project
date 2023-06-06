@@ -7,17 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     <link href="src/css/AuthPages.css" rel="stylesheet">
+    <link href="src/css/popup.css" rel="stylesheet">
 </head>
 <body class="auth-page">
-<?php if (Session::exists('message')): ?>
-    <div class="popup-background">
-        <div class="popup-box">
-            <h2 class="popup-message-heading">Message</h2>
-            <p class="popup-message-text"><?= Session::flash('message') ?></p>
-        </div>
-    </div>
-    <script src="src/js/popup.js"></script>
-<?php endif; ?>
 <div class="auth-box">
     <h2 class="heading-auth-box">Login</h2>
     <form action="login" method="POST" autocomplete="off">
