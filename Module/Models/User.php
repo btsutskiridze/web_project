@@ -53,11 +53,15 @@ class User
         return true;
     }
 
-    public function login($email = null, $password = null): bool
+    public function login($email = null, $password = null, $remember = false): bool
     {
         if (!$this->find($email)) return false;
 
         if ($this->data()->password !== Hash::make($password)) return false;
+
+        if ($remember) {
+
+        }
 
         Session::put($this->_sessionName, $this->data()->id);
         return true;

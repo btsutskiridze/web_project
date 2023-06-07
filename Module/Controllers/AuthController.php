@@ -72,7 +72,9 @@ class AuthController extends Controller
             return;
         }
 
-        if ((new User)->login(Input::get('email'), Input::get('password'))) {
+        $remember = Input::get('remember') === 'on';
+
+        if ((new User)->login(Input::get('email'), Input::get('password'), $remember)) {
             Redirect::to('/profile');
             return;
         }
