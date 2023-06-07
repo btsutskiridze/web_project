@@ -33,33 +33,21 @@
     </div>
 
     <div class="posts-container">
-        <div class="post">
-            <div class="post-header">
-                <img src="src/assets/avatar.png" alt="avatar" class="post-avatar">
-                <h2 class="post-username"><?= $user->username ?></h2>
+        <?php foreach ($posts as $post): ?>
+            <div class="post">
+                <div class="post-header">
+                    <img src="src/assets/avatar.png" alt="avatar" class="post-avatar">
+                    <h2 class="post-username"><?= $user->username ?></h2>
+                </div>
+                <div class="post-description">
+                    <?= $post->content ?>
+                </div>
+                <!--https://loremflickr.com/600/600-->
+                <div>
+                    <img src="<?= $post->image ?>" class="post-image" alt="">
+                </div>
             </div>
-            <div class="post-description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut autem dolor dolorem est eum magnam,
-                maiores odio officiis quos velit.
-            </div>
-            <div>
-                <img src="https://loremflickr.com/600/600" class="post-image" alt="">
-            </div>
-        </div>
-
-        <div class="post">
-            <div class="post-header">
-                <img src="src/assets/avatar.png" alt="avatar" class="post-avatar">
-                <h2 class="post-username"><?= $user->username ?></h2>
-            </div>
-            <div class="post-description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut autem dolor dolorem est eum magnam,
-                maiores odio officiis quos velit.
-            </div>
-            <div>
-                <img src="https://loremflickr.com/600/600" class="post-image" alt="">
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>
 </body>

@@ -1,6 +1,6 @@
 <link href="src/css/postPopup.css" rel="stylesheet">
 <script async src="src/js/postPopup.js"></script>
-<div class="popup-background ">
+<div class="popup-background hide">
     <div class="popup-box">
         <h1 class="popup-heading">Create new post</h1>
         <form action="/create-post">
