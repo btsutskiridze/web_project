@@ -5,6 +5,7 @@ class User
     private DB $_db;
     private object $_data;
     private string $_sessionName;
+    private string $_cookieName;
 
     private bool $_isLoggedIn = false;
 
@@ -12,7 +13,7 @@ class User
     {
         $this->_db = DB::getInstance();
         $this->_sessionName = Config::get('session/session_name');
-
+        $this->_cookieName = Config::get('remember/cookie_name');
 
         if ($user) {
             $this->find($user);
@@ -53,17 +54,14 @@ class User
         return true;
     }
 
-    public function login($email = null, $password = null, $remember = false): bool
+    public function login($email = null, $password = null): bool
     {
         if (!$this->find($email)) return false;
 
         if ($this->data()->password !== Hash::make($password)) return false;
 
-        if ($remember) {
-
-        }
-
         Session::put($this->_sessionName, $this->data()->id);
+        
         return true;
     }
 
