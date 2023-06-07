@@ -6,11 +6,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profile | <?= $user->username ?></title>
+    <link href="src/css/app.css" rel="stylesheet">
     <link href="src/css/profile.css" rel="stylesheet">
     <!--    <script src="https://cdn.tailwindcss.com"></script>-->
-
 </head>
 <body>
+<?php require_once 'src/views/components/newPostPopup.php'; ?>
 <div class="header">
     <h1 class="title">User Profile</h1>
     <nav class="navigation">
@@ -27,7 +28,7 @@
             <p class="profile-email"><?= $user->email ?></p>
         </div>
         <div>
-            <a href="#" class="add-post-button">Add New Post</a>
+            <button href="#" class="add-post-button">Add New Post</button>
         </div>
     </div>
 

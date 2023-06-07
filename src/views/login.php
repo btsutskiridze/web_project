@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <link href="src/css/app.css" rel="stylesheet">
     <link href="src/css/authPages.css" rel="stylesheet">
 </head>
 <body class="auth-page">
