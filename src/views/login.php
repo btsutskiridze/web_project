@@ -27,6 +27,10 @@
             <?php endif; ?>
         </div>
         <input type="hidden" name="token" value="<?= Token::generate() ?>">
+        <div class="checkbox">
+            <label for="remember" class="user-box-label">Remember me</label>
+            <input type="checkbox" name="remember" id="remember">
+        </div>
         <button type="submit" class="login-box-button">
             Login
         </button>
