@@ -61,7 +61,7 @@ class User
         if ($this->data()->password !== Hash::make($password)) return false;
 
         Session::put($this->_sessionName, $this->data()->id);
-        
+
         return true;
     }
 
@@ -74,6 +74,11 @@ class User
     public function data(): object
     {
         return $this->_data;
+    }
+
+    public function posts(): array
+    {
+        return $this->_db->get('posts', ['user_id', '=', $this->data()->id])->results();
     }
 
     public function isLoggedIn(): bool

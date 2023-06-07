@@ -7,6 +7,6 @@ class ProfileController extends Controller
     {
         $user = new User;
 
-        $this->view('profile', ['user' => $user->data()]);
+        $this->view('profile', ['user' => $user->data(), 'posts' => $user->posts()]);
     }
 }
