@@ -14,7 +14,9 @@ Route::post('/register', 'AuthController@register', [$guest]);
 Route::get('/profile', 'ProfileController@index', [$auth]);
 Route::get('/logout', 'AuthController@logout', [$auth]);
 
+Route::get('/create-post', 'PostsController@createPostView', [$auth]);
+Route::post('/create-post', 'PostsController@create', [$auth]);
+
 
 Route::notFound(fn() => Redirect::to('/'));
-
 
