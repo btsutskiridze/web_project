@@ -1,5 +1,6 @@
 <?php
 
+
 class Validator
 {
     private bool $_passed = false;
