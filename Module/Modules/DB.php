@@ -86,6 +86,23 @@ class DB //database
         return $this->action('SELECT *', $table, $where);
     }
 
+    public function getWithRelations($table, $relations = []): DB|bool
+    {
+        // Select query for the main table
+        $sql = "SELECT * FROM {$table}";
+
+        // Fetch related data
+        foreach ($relations as $relation) {
+            $relatedTable = $relation['table'];
+            $joinCondition = $relation['condition'];
+
+            $sql .= " JOIN {$relatedTable} ON {$joinCondition}";
+        }
+
+        return $this->executeQuery($sql);
+    }
+
+
     public function delete(string $table, array $where): DB|bool
     {
         return $this->action('DELETE', $table, $where);
