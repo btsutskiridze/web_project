@@ -1,5 +1,6 @@
 <?php
 
+
 class AuthController extends Controller
 {
     public function loginView(): void
@@ -60,7 +61,6 @@ class AuthController extends Controller
             'email' => 'Email',
             'password' => 'Password',
         ]);
-
 
         $validation = $validator->check($_POST, [
             'email' => ['required' => true, 'min' => 2, 'max' => 60, 'email' => true],
